@@ -1,5 +1,7 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+{{#if session.isAuthenticated}}
+  {{ session.data.authenticated.user.displayName }} さん
+  <button {{action "logout"}}>Sign out</button>
+  {{outlet}}
+{{else}}
+  <button {{action "login"}}>Google経由でログインしてください</button>
+{{/if}}
